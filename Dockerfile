@@ -1,9 +1,9 @@
 # Install the base requirements for the app.
 # This stage is to support development.
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY bin/Release/netcoreapp3.1/publish/ App/
+WORKDIR /App
+ENTRYPOINT ["dotnet", "NetCore.Docker.dll"]
 
 # Create the zip download file
 FROM node:alpine AS app-zip-creator
@@ -14,10 +14,9 @@ RUN rm -rf node_modules && \
     zip -r /app.zip /app
 
 # Configure the mkdocs.yml file for the correct language
-FROM node:alpine AS mkdoc-config-builder
-WORKDIR /app
-RUN yarn init -y && yarn add yaml
-COPY configure.js mkdocs* ./
+COPY bin/Release/netcoreapp3.1/publish/ App/
+WORKDIR /App
+ENTRYPOINT ["dotnet", "NetCore.Docker.dll"]
 ARG LANGUAGE
 RUN node configure.js $LANGUAGE
 
