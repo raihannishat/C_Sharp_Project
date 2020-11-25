@@ -14,11 +14,5 @@ namespace TodoList.Web.Models
         public string TaskName { get; set; }
         public string Discription { get; set; }
         public DateTime Time { get; set; }
-
-        public void DateRemaining()
-        {
-            
-        }
-
     }
 }

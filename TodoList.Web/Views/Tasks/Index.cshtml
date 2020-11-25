@@ -14,12 +14,11 @@
 <div class="row justify-content-md-center">
     @foreach (var item in Model)
     {
-
         DateTime today = DateTime.Today;
         DateTime next = new DateTime(item.Time.Year, item.Time.Month, item.Time.Day);
         int numDays = (next - today).Days;
 
-        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 d-inline-block p-1">
+        <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 d-inline-block p-2">
             <div class="card">
                 <div class="card-body">
 
@@ -39,7 +38,6 @@
                     <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </div>
-
             </div>
         </div>
     }
